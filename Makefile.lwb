@@ -1,0 +1,22 @@
+LWB_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
+PROJECTDIRS += $(LWB_DIR)/dev/cc2538
+PROJECTDIRS += $(LWB_DIR)/dev/cc2538/dev
+PROJECTDIRS += $(LWB_DIR)/platform/zoul
+PROJECTDIRS += $(LWB_DIR)/net/glossy
+PROJECTDIRS += $(LWB_DIR)/net/lwb
+
+PROJECT_SOURCEFILES += node-id.c
+
+PROJECT_SOURCEFILES += glossy.c
+
+PROJECT_SOURCEFILES += lwb.c 
+PROJECT_SOURCEFILES += lwb-g-sync.c 
+PROJECT_SOURCEFILES += lwb-g-rr.c 
+PROJECT_SOURCEFILES += lwb-sched-compressor.c
+
+ifdef LWB_SCHEDULER_SOURCE
+  PROJECT_SOURCEFILES += $(LWB_SCHEDULER_SOURCE)
+else
+  PROJECT_SOURCEFILES += lwb-scheduler-static.c 
+endif
